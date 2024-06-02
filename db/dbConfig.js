@@ -2,12 +2,13 @@ const mysql2 = require("mysql2");
 const { createConnection, createPool } = require("mysql2");
 
 const dbConnection = mysql2.createPool({
-	user: "evangadi-admin",
-	password: "121212",
+	user: process.env.USER,
+	password: process.env.PASSWORD,
 	host: "localhost",
-	database: "evangadi-forum",
+	database: process.env.DATABASE,
 	connectionLimit: 10,
 });
+
 
 // dbConnection.execute("select 'test' ", (err, result) => {
 // 	if (err) {

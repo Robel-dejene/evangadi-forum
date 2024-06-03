@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import axios from "../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+	const [error1, serError1] = useState("")
 	const navigate = useNavigate();
 	const userNameDom = useRef();
 	const firstNameDom = useRef();
@@ -38,7 +39,9 @@ function Register() {
 			alert("User registered successfully");
 			navigate("/login");
 		} catch (error) {
-			alert("Error registering user");
+			// alert("Error registering user");
+			// alert(error?.response?.data?.msg);
+			serError1(error?.response?.data?.msg);
 			console.log(error.response);
 		}
 		// console.log(userNameDom.current.value)
@@ -79,6 +82,7 @@ function Register() {
 			</form>
 			<br />
 			<Link to={"/login"}>Login</Link>
+			<h2>{error1}</h2>
 		</section>
 	);
 }

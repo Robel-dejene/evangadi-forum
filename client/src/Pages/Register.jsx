@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import axios from "../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
+import Header from "../component/Header/Header";
 
 function Register() {
 	const [error1, serError1] = useState("")
@@ -52,6 +53,7 @@ function Register() {
 	}
 	return (
 		<section>
+			<Header />
 			<form onSubmit={handleSubmit}>
 				<div>
 					<span>username:---</span>

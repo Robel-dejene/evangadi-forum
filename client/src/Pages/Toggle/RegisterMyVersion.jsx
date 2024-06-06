@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-import axios from "../axiosConfig";
+import axios from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../component/Header/Header";
+import "./Register.css";
+import handleToggle from "../../App";
 
 function Register() {
-	const [error1, serError1] = useState("")
+	const [error1, serError1] = useState("");
 	const navigate = useNavigate();
 	const userNameDom = useRef();
 	const firstNameDom = useRef();
@@ -52,39 +53,41 @@ function Register() {
 		// console.log(passwordNameDom.current.value)
 	}
 	return (
-		<section>
-			<Header />
-			<form onSubmit={handleSubmit}>
-				<div>
-					<span>username:---</span>
-					<input ref={userNameDom} type="text" placeholder="username" />
-				</div>
-				<br />
-				<div>
-					<span>First name :---</span>
-					<input ref={firstNameDom} type="text" placeholder="first name" />
-				</div>
-				<br />
-				<div>
-					<span>last name :---</span>
-					<input ref={lastNameDom} type="text" placeholder="last name" />
-				</div>
-				<br />
-				<div>
-					<span>email :---</span>
+		<section className="large-box">
+			<div>
+				<h3>Join the network</h3>
+			</div>
+			<div>
+				<p className="smalla">
+					Already have an account? <Link onClick={handleToggle}>Sign in</Link>
+				</p>
+			</div>
+			<div>
+				<form onSubmit={handleSubmit}>
 					<input ref={emailDom} type="text" placeholder="email" />
-				</div>
-				<br />
-				<div>
-					<span>password :---</span>
+
+					<div className="first-last">
+						<input ref={firstNameDom} type="text" placeholder="first name" />
+						<input ref={lastNameDom} type="text" placeholder="last name" />
+					</div>
+
+					<input ref={userNameDom} type="text" placeholder="username" />
+
 					<input ref={passwordDom} type="password" placeholder="password" />
-				</div>
-				<br />
-				<button type="submit">Register</button>
-			</form>
-			<br />
-			<Link to={"/login"}>Login</Link>
-			<h2>{error1}</h2>
+
+					<button type="submit">Agree and Join</button>
+					<div>
+						<div className="smalla">
+							I agree to the <Link to={"#"}>Privacy policy</Link> and{" "}
+							<Link to={"#"}>terms of service.</Link>
+						</div>
+
+						<div className="smalla">
+							<Link to={"#"}>Already have an account?</Link>
+						</div>
+					</div>
+				</form>
+			</div>
 		</section>
 	);
 }

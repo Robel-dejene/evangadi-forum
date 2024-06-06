@@ -45,48 +45,40 @@ function Login() {
 			<Header />
 			<div className="big-box">
 				<section className="two-boxes">
-					<div
-						className="first-box"
-						style={{ display: !toggle ? "none" : "block" }}
-					>
-						{/* {toggle ? ( */}
-						<form onSubmit={handleSubmit}>
-							<div style={{ fontWeight: "bold" }}>Login to your account</div>
-							<div>
-								<span>Don't have an account? </span>
-								<span className="register-link">
-									<Link onClick={handleToggle}>Create a new account</Link>
-								</span>
-							</div>
-							<div>
-								<input ref={emailDom} type="text" placeholder="email" />
-							</div>
-							<div>
-								<input
-									ref={passwordDom}
-									type="password"
-									placeholder="password"
-								/>
-							</div>
-							<div className="register-link left">
-								<Link to="#">Forgot Password?</Link>
-							</div>
-							<div>
-								<button type="submit">Log in</button>
-							</div>
-						</form>
-						{/* ) : ( */}
+					<div className="first-box">
+						{toggle ? (
+							<form onSubmit={handleSubmit}>
+								<div style={{ fontWeight: "bold" }}>Login to your account</div>
+								<div>
+									<span>Don't have an account? </span>
+									<span className="register-link">
+										<Link onClick={handleToggle}>Create a new account</Link>
+									</span>
+								</div>
+								<div>
+									<input ref={emailDom} type="text" placeholder="email" />
+								</div>
+								<div>
+									<input
+										ref={passwordDom}
+										type="password"
+										placeholder="password"
+									/>
+								</div>
+								<div className="register-link left">
+									<Link to="#">Forgot Password?</Link>
+								</div>
+								<div>
+									<button type="submit">Log in</button>
+								</div>
+							</form>
+						) : (
+							<Register />
+						)}
 
 						<br />
 						{/* <Link to={"/register"}>register</Link> */}
 					</div>
-					<div
-						style={{ display: toggle ? "none" : "block" }}
-						className="first-box"
-					>
-						<Register handleToggle={handleToggle} />
-					</div>
-					{/* )} */}
 					<div className="second-box">
 						<small>About</small>
 						<h1>Evangadi Networks Q&A</h1>

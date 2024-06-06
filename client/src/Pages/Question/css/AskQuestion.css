@@ -14,14 +14,14 @@
 }
 .q-area {
 	text-align: center;
-    width: 960px;
+    max-width: 960px;
     margin: 0 auto;
     margin-top: 40px;
 }
 .inside-q-area {
     display: flex;
     justify-content: center;
-    width: 960px;
+    max-width:  960px;
     text-align: center;
 
 }

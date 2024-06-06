@@ -55,7 +55,7 @@ function Login() {
 							<div>
 								<span>Don't have an account? </span>
 								<span className="register-link">
-									<Link onClick={handleToggle}>Create a new account</Link>
+									<div onClick={handleToggle}>Create a new account</div>
 								</span>
 							</div>
 							<div>

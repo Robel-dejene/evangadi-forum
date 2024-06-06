@@ -11,7 +11,7 @@ export const AppState = createContext();
 
 function App() {
 	const [user, setUser] = useState({});
-	const [toggle, setToggle] = useState(true)
+	const [toggle, setToggle] = useState(true);
 	async function handleToggle(e) {
 		e.preventDefault();
 		setToggle(!toggle);
@@ -42,7 +42,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
+				{/* <Route path="/register" element={<Register />} /> */}
 				<Route path="/askquestion" element={<AskQuestion />} />
 			</Routes>
 		</AppState.Provider>

@@ -1,0 +1,37 @@
+.middle {
+	max-width: 60%;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 10vh;
+}
+.middle button {
+	text-align: end;
+	background-color: #516cf0;
+	display: flex;
+}
+.border-bottom h1 {
+	/* border-bottom: 1px solid rgb(209, 206, 206); */
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+.border-bottom {
+    max-width: 60vw;
+    margin: 0 auto;
+}
+.answerPage {
+	margin-top: 6vh;
+}
+.answer {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+}
+.middle small {
+	color: black;
+}
+.top-bottom {
+	border-bottom: 1px solid rgb(209, 206, 206);
+	border-top: 1px solid rgb(209, 206, 206);
+	padding: 15px;
+	margin: 0px;
+}

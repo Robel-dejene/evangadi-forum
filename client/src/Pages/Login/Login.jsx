@@ -8,6 +8,7 @@ import Register from "../Register/Register";
 import handleToggle from "../../App";
 
 function Login() {
+	const [loginError, setLoginError] = useState()
 	const navigate = useNavigate();
 	const emailDom = useRef();
 	const passwordDom = useRef();
@@ -30,13 +31,14 @@ function Login() {
 				email: emailValue,
 				password: passwordValue,
 			});
-			alert("User logged in successfully");
+			// alert("User logged in successfully");
 			localStorage.setItem("token", data.token);
-			navigate("/");
+			navigate("/home");
 			//   console.log(data)
 		} catch (error) {
-			alert(error?.response?.data?.msg);
+			// alert(error?.response?.data?.msg);
 			console.log(error.response.data);
+			setLoginError(error?.response?.data?.msg);
 		}
 	}
 
@@ -57,6 +59,9 @@ function Login() {
 								<span className="register-link">
 									<Link onClick={handleToggle}>Create a new account</Link>
 								</span>
+							</div>
+							<div>
+								<p style={{color: 'red'}}>{loginError}</p>
 							</div>
 							<div>
 								<input ref={emailDom} type="text" placeholder="email" />

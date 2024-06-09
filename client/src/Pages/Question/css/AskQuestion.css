@@ -14,14 +14,13 @@
 }
 .q-area {
 	text-align: center;
-    max-width: 960px;
+    max-width: 60%;
     margin: 0 auto;
     margin-top: 40px;
 }
 .inside-q-area {
     display: flex;
     justify-content: center;
-    max-width:  960px;
     text-align: center;
 
 }
@@ -42,4 +41,5 @@ textarea {
 }
 .q-area button {
     display: flex;
+    background-color: #516cf0;
 }

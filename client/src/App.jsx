@@ -6,16 +6,53 @@ import Register from "./Pages/Register/Register.jsx";
 import { useEffect, useState, createContext } from "react";
 import axios from "./axiosConfig.js";
 import AskQuestion from "./Pages/Question/AskQuestion.jsx";
+import Answer from "./Pages/Answer/Answer.jsx";
+import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
 
 export const AppState = createContext();
 
 function App() {
 	const [user, setUser] = useState({});
-	const [toggle, setToggle] = useState(true)
+	const [toggle, setToggle] = useState(true);
 	async function handleToggle(e) {
 		e.preventDefault();
 		setToggle(!toggle);
 	}
+	
+
+
+	// useEffect(() => {
+	// 	const checkUser = async () => {
+	// 		try {
+	// 			const { data } = await axiosInstance.get("/users/check", {
+	// 				headers: { authorization: "Bearer " + token },
+	// 			});
+	// 			setUser(data);
+	// 		} catch (error) {
+	// 			console.log(error?.response?.data?.error);
+	// 			setUser(null); // Explicitly set user to null if check fails
+	// 			navigate("/login");
+	// 		}
+	// 	};
+	// 	if (token) {
+	// 		checkUser();
+	// 	} else {
+	// 		setUser(null); // Explicitly set user to null if no token
+	// 	}
+	// }, [token]);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
@@ -29,20 +66,27 @@ function App() {
 			setUser(data);
 			console.log(data);
 		} catch (error) {
-			console.log(error.response);
+			console.log(error?.response);
 			navigate("/login");
 		}
+		
 	}
 
 	useEffect(() => {
-		checkUser();
-	}, []);
+		if (token) {
+			checkUser();
+		} else {
+			setUser(null); // Explicitly set user to null if no token
+		}
+	}, [token]);
 	return (
 		<AppState.Provider value={{ user, setUser, handleToggle }}>
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<LandingPage /> } />
+				<Route path="/home" element={<Home />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
+				<Route path="/answers/:questionid" element={<Answer />} />
+				{/* <Route path="/register" element={<Register />} /> */}
 				<Route path="/askquestion" element={<AskQuestion />} />
 			</Routes>
 		</AppState.Provider>

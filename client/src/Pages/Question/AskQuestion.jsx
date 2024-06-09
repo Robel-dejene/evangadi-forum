@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/AskQuestion.css";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "../../component/Header/Header";
 import Footer from "../../component/Footer/Footer";
+import axios from "../../axiosConfig";
 function AskQuestion() {
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
-	async function handleQuestion(e) {
-        e.preventDefault();
-		console.log("lol");
-		navigate('/')
+
+	async function addQuestion(e) {
+		e.preventDefault();
+		try {
+			if (title.length === 0 && description.length === 0) {
+				alert("Please fill all the fields");
+			} else if (title.length === 0) {
+				alert("Please fill the title of your Question!");
+			} else if (description.length === 0) {
+				alert("Please fill the description of your Question!");
+			}
+			const { data } = await axios.post(
+				"/questions/ask-questions",
+				{ title, description },
+				{
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}
+			);
+			console.log(data);
+			navigate("/home");
+		} catch (error) {
+			console.log(error.response);
+		}
 	}
+
 	return (
 		<>
-		<Header />
+			<Header />
 			<div className="container">
 				<div className="instructions">
 					<h2>Steps to write a good question</h2>
@@ -25,31 +50,40 @@ function AskQuestion() {
 					</ul>
 				</div>
 			</div>
-            <section>
-
-			<div className="q-area">
-				<div className="inside-q-area">
-					<h2>Ask a public question</h2>
+			<section>
+				<div className="q-area">
+					<div className="inside-q-area">
+						<h2>Ask a public question</h2>
+					</div>
+					<div>
+						<small>Go to question page</small>
+					</div>
+					<div>
+						<form action="" onSubmit={addQuestion}>
+							<div>
+								<input
+									type="text"
+									value={title}
+									onChange={(e) => setTitle(e.target.value)} // updating the state
+									placeholder="Title"
+								/>
+							</div>
+							<div>
+								<textarea
+									value={description}
+									onChange={(e) => setDescription(e.target.value)} // Updating the state
+									rows="10"
+									cols="125"
+									placeholder="Question Description..."
+								></textarea>
+							</div>
+							<div>
+								<button type="submit">Post Your Question</button>
+							</div>
+						</form>
+					</div>
 				</div>
-				<div>
-					<small>Go to question page</small>
-				</div>
-				<div>
-					<form action="" onSubmit={handleQuestion}>
-						<div>
-							{/* <textarea name="" id="" placeholder="Title" rows="3" cols="125"></textarea> */}
-                            <input type="text" placeholder="Title" />
-						</div>
-						<div>
-							<textarea rows="10" cols="125" placeholder="Question Description..." ></textarea>
-						</div>
-						<div>
-							<button type="submit">Post Your Question</button>
-						</div>
-					</form>
-				</div>
-			</div>
-            </section>
+			</section>
 			<Footer />
 		</>
 	);

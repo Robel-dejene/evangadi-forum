@@ -1,0 +1,32 @@
+.background {
+	background-image: url(./images/Landingpagepic.jpg);
+	height: 100vh;
+	color: white;
+    margin-bottom: 0px;
+}
+.background ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    list-style: none;
+    width: 70vw;
+    margin: 0 auto;
+    }
+    .background ul li {
+	text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.mybutton {
+    background-color: whitesmoke;
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: large;
+}
+.mybutton:hover{
+    background-color: #fe8303;
+}
+.my-footer {
+    margin-top: 0px;
+}

@@ -38,8 +38,8 @@ function Register({ handleToggle }) {
 				email: emailValue,
 				password: passwordValue,
 			});
-			alert("User registered successfully");
-			navigate("/login");
+			// alert("User registered successfully");
+			window.location.reload(navigate("/login"));
 		} catch (error) {
 			// alert("Error registering user");
 			// alert(error?.response?.data?.msg);
@@ -83,7 +83,7 @@ function Register({ handleToggle }) {
 						</div>
 
 						<div className="smalla">
-							<Link to={"#"}>Already have an account?</Link>
+							<a href={"/login"}>Already have an account?</a>
 						</div>
 					</div>
 				</form>

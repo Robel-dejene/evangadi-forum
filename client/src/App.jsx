@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./Pages/Home/Home.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useCallback } from "react";
 import axios from "./axiosConfig.js";
 import AskQuestion from "./Pages/Question/AskQuestion.jsx";
 import Answer from "./Pages/Answer/Answer.jsx";
@@ -18,7 +18,15 @@ function App() {
 		e.preventDefault();
 		setToggle(!toggle);
 	}
+
 	
+	function Logout() {
+		localStorage.removeItem("token");
+		// setUser(null);
+		// setToggle(!toggle)
+		navigate("/");
+		// window.location.reload();
+	}
 
 
 	// useEffect(() => {
@@ -44,19 +52,13 @@ function App() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 	const token = localStorage.getItem("token");
+	const currentPath = window.location.pathname
 	const navigate = useNavigate();
 	async function checkUser() {
+		if (currentPath === "/") {
+			return;
+		}
 		try {
 			const { data } = await axios.get("/users/check", {
 				headers: {
@@ -73,14 +75,57 @@ function App() {
 	}
 
 	useEffect(() => {
-		if (token) {
 			checkUser();
-		} else {
-			setUser(null); // Explicitly set user to null if no token
-		}
-	}, [token]);
+		
+	}, [token, checkUser]);
+
+
+		// useEffect(() => {
+		// 	if (token) {
+		// 		checkUser();
+		// 	} else {
+		// 		setUser(null); // Explicitly set user to null if no token
+		// 	}
+		// }, [token, checkUser]);
+
+
+
+
+		
+	// const checkUser = useCallback(async () => {
+	// 	// if (currentPath === "/register") {
+	// 	// 	return;
+	// 	// }
+
+	// 	try {
+	// 		const { data } = await axios.get("/users/check", {
+	// 			headers: {
+	// 				Authorization: `Bearer ${localStorage.getItem("token")}`,
+	// 			},
+	// 		});
+
+	// 		setUser(data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		navigate("/login");
+	// 	}
+	// }, [navigate]);
+
+	// useEffect(() => {
+	// 	checkUser();
+	// }, [checkUser]);
+
+
+
+
+
+
+
+
+
+
 	return (
-		<AppState.Provider value={{ user, setUser, handleToggle }}>
+		<AppState.Provider value={{ user, setUser, handleToggle, Logout }}>
 			<Routes>
 				<Route path="/" element={<LandingPage /> } />
 				<Route path="/home" element={<Home />} />

@@ -7,11 +7,13 @@ import axios from "../../axiosConfig";
 function AskQuestion() {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
+	const [successful, setSeccessful] = useState(false);
 	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
 
 	async function addQuestion(e) {
 		e.preventDefault();
+		setSeccessful(!successful);
 		try {
 			if (title.length === 0 && description.length === 0) {
 				alert("Please fill all the fields");
@@ -30,7 +32,9 @@ function AskQuestion() {
 				}
 			);
 			console.log(data);
-			navigate("/home");
+			setTimeout(() => {
+				navigate("/home");
+			}, 1000);
 		} catch (error) {
 			console.log(error.response);
 		}
@@ -55,6 +59,16 @@ function AskQuestion() {
 					<div className="q-area">
 						<div className="inside-q-area">
 							<h2>Ask a public question</h2>
+						</div>
+						<div>
+							<small
+								style={{
+									display: successful ? "block" : "none",
+									color: "green",
+								}}
+							>
+								Question posted successfully. Redirecting to home page...
+							</small>
 						</div>
 						<div>
 							<small>Go to question page</small>

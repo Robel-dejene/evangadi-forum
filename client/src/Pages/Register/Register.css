@@ -27,3 +27,14 @@
 button {
     margin-top: 10px;
 }
+.form-box {
+    position: relative;
+}
+.signin-toggle {
+    position: absolute;
+    right: 40px;
+    top: 60%;
+	transform: translateY(-50%);
+	cursor: pointer;
+
+}

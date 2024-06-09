@@ -12,7 +12,7 @@ footer {
 	margin-top: auto;
 }
 .Question {
-    width: 60vw;
+	width: 60vw;
 	display: flex;
 	justify-content: space-between;
 	margin: 5vh auto;
@@ -44,13 +44,11 @@ footer {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
 }
-.questionBox h1{
-    margin-left: 20vw;
-    padding-bottom: 5vh;
+.questionBox h1 {
+	margin-left: 20vw;
+	padding-bottom: 5vh;
 	border-bottom: 1px solid rgb(187, 184, 184);
-    max-width: 60vw;
-
-    
+	max-width: 60vw;
 }
 .arrow {
 	align-items: end;
@@ -65,4 +63,22 @@ footer {
 }
 .flexing:first-child {
 	border-top: 1px solid rgb(187, 184, 184);
+}
+.flexing:hover {
+	background-color: #f2f2f2;
+	transform: scale(1.02);
+	/* color: #516cf0; */
+}
+.avatar{
+
+	/* width: 10vh;
+	height: 10vh; */
+}
+.flexing:hover .avatar {
+	/* position: relative; */
+	color: #2f49c8;
+	background-color: gray;
+	/* border-radius: 50%; */
+	/* padding-right: 1vw; */
+	/* left: 5vh; */
 }

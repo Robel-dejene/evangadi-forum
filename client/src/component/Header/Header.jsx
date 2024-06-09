@@ -1,27 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import evangadi from "./images/blackLogo.png";
 import "./Header.css";
 import { AppState } from "../../App";
 
-
 function Header() {
 	const navigate = useNavigate();
-	const {user, setUser, handleToggle} = useContext(AppState) 
-// const 	[toggle, setToggle] = useState(true)
-	function Logout () {
-		localStorage.removeItem("token")
-		setUser(null)
-		// setToggle(!toggle)
-			navigate("/");
-
-		
-	}
-	function SignIn (e) {
+	const { user, setUser, handleToggle, Logout } = useContext(AppState);
+	// const 	[toggle, setToggle] = useState(true)
+	// function Logout() {
+	// 	localStorage.removeItem("token");
+	// 	setUser(null);
+	// 	// setToggle(!toggle)
+	// 	navigate("/");
+	// }
+	function SignIn(e) {
 		e.preventDefault();
-		// setToggle(!toggle)
-		navigate("/login");
-		
+		navigate("/");
 	}
 	return (
 		<>
@@ -35,7 +30,7 @@ function Header() {
 					<div className="inside-container">
 						<div>Home</div>
 						<div>How it works</div>
-						{!user ? (
+						{!user?.username ? (
 							<button
 								onClick={Logout}
 								// style={{ display: toggle ? "none" : "block" }}

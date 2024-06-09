@@ -6,9 +6,12 @@ import "./Login.css";
 import Footer from "../../component/Footer/Footer";
 import Register from "../Register/Register";
 import handleToggle from "../../App";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 
 function Login() {
-	const [loginError, setLoginError] = useState()
+	const [loginError, setLoginError] = useState();
+	const [passwordVisible, setPasswordVisible] = useState(false);
 	const navigate = useNavigate();
 	const emailDom = useRef();
 	const passwordDom = useRef();
@@ -16,6 +19,10 @@ function Login() {
 	async function handleToggle(e) {
 		e.preventDefault();
 		setToggle(!toggle);
+	}
+	async function visibliity(e) {
+		e.preventDefault();
+		setPasswordVisible(!passwordVisible);
 	}
 
 	async function handleSubmit(e) {
@@ -61,17 +68,31 @@ function Login() {
 								</span>
 							</div>
 							<div>
-								<p style={{color: 'red'}}>{loginError}</p>
+								<p style={{ color: "red" }}>{loginError}</p>
 							</div>
 							<div>
 								<input ref={emailDom} type="text" placeholder="email" />
 							</div>
-							<div>
+							<div className="eyeInpt-container">
 								<input
 									ref={passwordDom}
-									type="password"
+									className="eyeInput"
+									type={passwordVisible ? "text" : "password"}
+
+									// type="password"
 									placeholder="password"
 								/>
+								{passwordVisible ? (
+									<VisibilityRoundedIcon
+										className="togglePassword"
+										onClick={visibliity}
+									/>
+								) : (
+									<VisibilityOffRoundedIcon
+										className="togglePassword"
+										onClick={visibliity}
+									/>
+								)}
 							</div>
 							<div className="register-link left">
 								<Link to="#">Forgot Password?</Link>

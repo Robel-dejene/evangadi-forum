@@ -7,6 +7,7 @@ import axios from "../../axiosConfig";
 import { useParams } from "react-router-dom";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { fontGrid } from "@mui/material/styles/cssUtils";
+import ScrollableComponent from "../../component/ScrollableComponent/scrollableComponent";
 
 function Answer() {
 	const [answer, setAnswer] = useState("");
@@ -15,6 +16,7 @@ function Answer() {
 	const [bringQuestion, setBringQuestion] = useState([]);
 	const token = localStorage.getItem("token");
 	const { questionid } = useParams();
+	const [answerGiven, setAnswerGiven] = useState(false);
 	async function postedAnswer() {
 		try {
 			const { data } = await axios.get(`/answers/${questionid}`, {
@@ -47,6 +49,7 @@ function Answer() {
 	}, [questionid]);
 	const navigate = useNavigate();
 	async function postAnswer(e) {
+		setAnswerGiven(!answerGiven);
 		e.preventDefault();
 		try {
 			if (answer.length === 0) {
@@ -62,7 +65,10 @@ function Answer() {
 				}
 			);
 			console.log(data);
-			navigate("/home");
+			setTimeout(() => {
+				window.location.reload();
+				// navigate("/home");
+			}, 2000);
 		} catch (error) {
 			console.log(error.response);
 		}
@@ -76,10 +82,20 @@ function Answer() {
 					<div className="the-question">
 						{bringQuestion.map((question, index) => (
 							<div key={index} className="one-question">
-								<p style={{ fontWeight: "bold" }}>{question.title}</p>
+								<p
+									style={{
+										fontWeight: "bold",
+										fontSize: "30px",
+										borderBottom: "3px solid #fe8303",
+										marginBottom: "2vh",
+									}}
+								>
+									{question.title}
+								</p>
 								<p
 									style={{
 										color: "rgb(95, 92, 92);",
+										fontSize: "20px",
 									}}
 								>
 									{question.description}
@@ -88,25 +104,37 @@ function Answer() {
 						))}
 					</div>
 
-					<h1 className="top-bottom">Answer From The Community</h1>
+					<h1 className="top-bottom">Answers From The Community</h1>
 					<div className="answers-list">
-						{bringAnswer.map((answer, index) => (
-							<div key={index} className="answer">
-								<div>
-									<AccountCircleOutlinedIcon style={{ fontSize: "100" }} />
-									<p style={{ fontWeight: "bold", textAlign: "center" }}>
-										{answer.username}
-									</p>
+						<ScrollableComponent
+							style={{ height: "350px", backgroundcolor: "red" }}
+						>
+							{bringAnswer.map((answer, index) => (
+								<div key={index} className="answer">
+									<div>
+										<AccountCircleOutlinedIcon style={{ fontSize: "100" }} />
+										<p style={{ fontWeight: "bold", textAlign: "center" }}>
+											{answer.username}
+										</p>
+									</div>
+									<div>
+										<p>{answer.answer}</p>
+									</div>
 								</div>
-								<div>
-									<p>{answer.answer}</p>
-								</div>
-							</div>
-						))}
+							))}
+						</ScrollableComponent>
 					</div>
 				</div>
 				<div className="middle">
 					<h1>Answer The Top Question</h1>
+					<small
+						style={{
+							display: answerGiven ? "block" : "none",
+							color: "green",
+						}}
+					>
+						Answer posted successfully
+					</small>
 					<small>Go to Question page</small>
 					<form action="" onSubmit={postAnswer}>
 						<textarea

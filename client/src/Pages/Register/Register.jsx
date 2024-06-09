@@ -4,15 +4,24 @@ import axios from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import handleToggle from "../../App";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 
 function Register({ handleToggle }) {
 	const [error1, serError1] = useState("");
+	const [passwordVisible, setPasswordVisible] = useState(false);
 	const navigate = useNavigate();
 	const userNameDom = useRef();
 	const firstNameDom = useRef();
 	const lastNameDom = useRef();
 	const emailDom = useRef();
 	const passwordDom = useRef();
+
+	async function visibliity(e) {
+		e.preventDefault();
+		setPasswordVisible(!passwordVisible);
+	}
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 		const userNameValue = userNameDom.current.value;
@@ -63,7 +72,7 @@ function Register({ handleToggle }) {
 				</p>
 			</div>
 			<div>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} className="form-box">
 					<input ref={emailDom} type="text" placeholder="email" />
 
 					<div className="first-last">
@@ -73,7 +82,24 @@ function Register({ handleToggle }) {
 
 					<input ref={userNameDom} type="text" placeholder="username" />
 
-					<input ref={passwordDom} type="password" placeholder="password" />
+					<input
+						ref={passwordDom}
+						className="eyeInput"
+						type = {passwordVisible ? "text" : "password"}
+						// type="password"
+						placeholder="password"
+					/>
+					{passwordVisible ? (
+						<VisibilityRoundedIcon
+							onClick={visibliity}
+							className="signin-toggle"
+						/>
+					) : (
+						<VisibilityOffRoundedIcon
+							onClick={visibliity}
+							className="signin-toggle"
+						/>
+					)}
 
 					<button type="submit">Agree and Join</button>
 					<div>

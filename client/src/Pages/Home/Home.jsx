@@ -8,6 +8,7 @@ import "./Home.css";
 import axios from "../../axiosConfig";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import ScrollableComponent from "../../component/ScrollableComponent/scrollableComponent";
 function Home() {
 	const [questions, setQuestions] = useState([]);
 	const [username, setUsername] = useState();
@@ -19,6 +20,7 @@ function Home() {
 	// 	 setQuestions(questions)
 	// 	 setUsername(username)
 	//  }
+	const { user } = useContext(AppState);
 	async function userx() {
 		try {
 			const { data } = await axios.get("/questions/see-questions", {
@@ -42,7 +44,6 @@ function Home() {
 		e.preventDefault();
 		navigate("/askquestion");
 	}
-	const { user } = useContext(AppState);
 	console.log(user);
 	return (
 		<>
@@ -59,26 +60,28 @@ function Home() {
 				<div>
 					<div className="questionBox">
 						<h1>Questions</h1>
-						{questions?.map((question, i) => (
-							<Link
-								to={`/answers/${question.questionid}`}
-								className="flexing"
-								key={question.questionid}
-							>
-								<div className="questionList">
-									<div>
-										<AccountCircleOutlinedIcon style={{ fontSize: 100 }} />
-										<p>{question.username}</p>
+						<ScrollableComponent>
+							{questions?.map((question, i) => (
+								<Link
+									to={`/answers/${question.questionid}`}
+									className="flexing"
+									key={question.questionid}
+								>
+									<div className="questionList">
+										<div className="avatar">
+											<AccountCircleOutlinedIcon style={{ fontSize: '100' }} />
+											<p>{question.username}</p>
+										</div>
+										<div>
+											<h3>{question.title}</h3>
+										</div>
 									</div>
-									<div>
-										<h3>{question.title}</h3>
+									<div className="arrow">
+										<ArrowForwardIosSharpIcon />
 									</div>
-								</div>
-								<div className="arrow">
-									<ArrowForwardIosSharpIcon />
-								</div>
-							</Link>
-						))}
+								</Link>
+							))}
+						</ScrollableComponent>
 					</div>
 
 					{/* <div className="questionList">

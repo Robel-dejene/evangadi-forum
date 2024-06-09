@@ -92,10 +92,24 @@ footer {
 	text-align: end;
 	width: 95%;
 }
-
+.eyeInpt-container {
+	position: relative;
+	width: 100%;
+}
+/* .eyeInput {
+	padding-right: 30px;
+	width: 100%;
+} */
+.togglePassword {
+	position: absolute;
+	right: 40px;
+	top: 60%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
 
 @media screen and (max-width: 968px) {
-    .big-box {
-    flex-direction: column-reverse; /* Reverse order on small screens */
+	.big-box {
+		flex-direction: column-reverse; /* Reverse order on small screens */
 	}
 }

@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
 	const navigate = useNavigate();
-	function ToLogin(e) {
-		e.preventDefault();
-		navigate("/login");
+
+	function ToLogIn() {
+		navigate("./login");
 	}
 	return (
 		<div>
@@ -24,7 +24,7 @@ function LandingPage() {
 					<li>Placement</li>
 					<li>Contact</li>
 					<li>
-						<button onClick={ToLogin} className="mybutton">
+						<button onClick={ToLogIn} className="mybutton">
 							Sign In
 						</button>
 					</li>

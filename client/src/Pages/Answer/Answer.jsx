@@ -77,7 +77,13 @@ function Answer() {
 						{bringQuestion.map((question, index) => (
 							<div key={index} className="one-question">
 								<p style={{ fontWeight: "bold" }}>{question.title}</p>
-								<p>{question.description}</p>
+								<p
+									style={{
+										color: "rgb(95, 92, 92);",
+									}}
+								>
+									{question.description}
+								</p>
 							</div>
 						))}
 					</div>
@@ -87,8 +93,10 @@ function Answer() {
 						{bringAnswer.map((answer, index) => (
 							<div key={index} className="answer">
 								<div>
-									<AccountCircleOutlinedIcon style={{ fontSize: 100 }} />
-									<p style={{ fontWeight: "bold" }}>{answer.username}</p>
+									<AccountCircleOutlinedIcon style={{ fontSize: "100" }} />
+									<p style={{ fontWeight: "bold", textAlign: "center" }}>
+										{answer.username}
+									</p>
 								</div>
 								<div>
 									<p>{answer.answer}</p>

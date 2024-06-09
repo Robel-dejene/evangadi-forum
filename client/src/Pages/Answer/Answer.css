@@ -11,20 +11,25 @@
 }
 .border-bottom h1 {
 	/* border-bottom: 1px solid rgb(209, 206, 206); */
-    margin-top: 20px;
-    padding-bottom: 20px;
+	margin-top: 20px;
+	padding-bottom: 20px;
 }
 .border-bottom {
-    max-width: 60vw;
-    margin: 0 auto;
+	max-width: 60vw;
+	margin: 0 auto;
 }
 .answerPage {
 	margin-top: 6vh;
+	margin-bottom: 5vh;
 }
 .answer {
 	margin-top: 20px;
 	display: flex;
 	align-items: center;
+	gap: 4vw;
+}
+.answer div p{
+	/* text-align: center; */
 }
 .middle small {
 	color: black;
@@ -34,4 +39,10 @@
 	border-top: 1px solid rgb(209, 206, 206);
 	padding: 15px;
 	margin: 0px;
+}
+.answers-list {
+	color: rgb(95, 92, 92);
+}
+textarea {
+	padding: 1vw;
 }

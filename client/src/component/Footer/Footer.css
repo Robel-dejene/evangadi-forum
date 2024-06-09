@@ -7,8 +7,8 @@ footer {
 	/* text-align: center; */
 }
 .big-container {
-	margin-top: 20px;
-	padding-top: 75px;
+	/* margin-top: 20px; */
+	padding-top: 15vh;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -16,7 +16,7 @@ footer {
 	/* min-width: 100vw; */
 }
 .social-media {
-	margin-top: 30px;
+	margin-top: 5vh;
 	display: flex;
 	justify-content: space-around;
 }

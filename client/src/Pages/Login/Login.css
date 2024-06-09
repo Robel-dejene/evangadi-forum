@@ -92,3 +92,10 @@ footer {
 	text-align: end;
 	width: 95%;
 }
+
+
+@media screen and (max-width: 968px) {
+    .big-box {
+    flex-direction: column-reverse; /* Reverse order on small screens */
+	}
+}

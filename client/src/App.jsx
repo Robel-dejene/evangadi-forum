@@ -19,7 +19,6 @@ function App() {
 		setToggle(!toggle);
 	}
 
-	
 	function Logout() {
 		localStorage.removeItem("token");
 		// setUser(null);
@@ -27,7 +26,6 @@ function App() {
 		navigate("/");
 		// window.location.reload();
 	}
-
 
 	// useEffect(() => {
 	// 	const checkUser = async () => {
@@ -49,11 +47,8 @@ function App() {
 	// 	}
 	// }, [token]);
 
-
-
-
 	const token = localStorage.getItem("token");
-	const currentPath = window.location.pathname
+	const currentPath = window.location.pathname;
 	const navigate = useNavigate();
 	async function checkUser() {
 		if (currentPath === "/") {
@@ -71,27 +66,20 @@ function App() {
 			console.log(error?.response);
 			navigate("/login");
 		}
-		
 	}
 
 	useEffect(() => {
-			checkUser();
-		
+		checkUser();
 	}, [token, checkUser]);
 
+	// useEffect(() => {
+	// 	if (token) {
+	// 		checkUser();
+	// 	} else {
+	// 		setUser(null); // Explicitly set user to null if no token
+	// 	}
+	// }, [token, checkUser]);
 
-		// useEffect(() => {
-		// 	if (token) {
-		// 		checkUser();
-		// 	} else {
-		// 		setUser(null); // Explicitly set user to null if no token
-		// 	}
-		// }, [token, checkUser]);
-
-
-
-
-		
 	// const checkUser = useCallback(async () => {
 	// 	// if (currentPath === "/register") {
 	// 	// 	return;
@@ -115,19 +103,10 @@ function App() {
 	// 	checkUser();
 	// }, [checkUser]);
 
-
-
-
-
-
-
-
-
-
 	return (
 		<AppState.Provider value={{ user, setUser, handleToggle, Logout }}>
 			<Routes>
-				<Route path="/" element={<LandingPage /> } />
+				<Route path="/" element={<LandingPage />} />
 				<Route path="/home" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/answers/:questionid" element={<Answer />} />

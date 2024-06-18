@@ -4,7 +4,7 @@ import Header from "../../component/Header/Header";
 import AskQuestion from "../Question/AskQuestion";
 import Footer from "../../component/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
-import "./Home.css";
+import classes from "./Home.module.css";
 import axios from "../../axiosConfig";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
@@ -13,6 +13,11 @@ function Home() {
 	const [questions, setQuestions] = useState([]);
 	const [username, setUsername] = useState();
 	const token = localStorage.getItem("token");
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const handleSearch = (event) => {
+		setSearchTerm(event.target.value);
+	};
 
 	//  async function userx () {
 
@@ -47,9 +52,9 @@ function Home() {
 	console.log(user);
 	return (
 		<>
-			<section className="top-container">
+			<section className={classes.top_container}>
 				<Header />
-				<div className="Question">
+				<div className={classes.Question}>
 					<div>
 						<button onClick={toQuestions}>Ask Question</button>
 					</div>
@@ -58,25 +63,34 @@ function Home() {
 					</div>
 				</div>
 				<div>
-					<div className="questionBox">
+					<input
+						type="text"
+						name="search"
+						className={classes.Question_search}
+						placeholder="Search Question"
+						onChange={handleSearch}
+					/>
+				</div>
+				<div>
+					<div className={classes.questionBox}>
 						<h1>Questions</h1>
 						<ScrollableComponent>
-							{questions?.map((question, i) => (
+							{questions?.filter((question) => question.title.toLowerCase().includes(searchTerm.toLowerCase())).map((question, i) => (
 								<Link
 									to={`/answers/${question.questionid}`}
-									className="flexing"
+									className={classes.flexing}
 									key={question.questionid}
 								>
-									<div className="questionList">
+									<div className={classes.questionList}>
 										<div className="avatar">
-											<AccountCircleOutlinedIcon style={{ fontSize: '100' }} />
+											<AccountCircleOutlinedIcon style={{ fontSize: "100" }} />
 											<p>{question.username}</p>
 										</div>
 										<div>
 											<h3>{question.title}</h3>
 										</div>
 									</div>
-									<div className="arrow">
+									<div className={classes.arrow}>
 										<ArrowForwardIosSharpIcon />
 									</div>
 								</Link>
@@ -84,7 +98,7 @@ function Home() {
 						</ScrollableComponent>
 					</div>
 
-					{/* <div className="questionList">
+					{/* <div className={classes.questionList}>
 						{questions?.map((question, i) => (
 							<AccountCircleIcon fontSize="large" />
 							

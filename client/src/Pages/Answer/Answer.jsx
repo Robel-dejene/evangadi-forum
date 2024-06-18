@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../component/Header/Header";
 import Footer from "../../component/Footer/Footer";
-import "./Answer.css";
-import { useNavigate } from "react-router-dom";
+import classes from "./Answer.module.css";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "../../axiosConfig";
 import { useParams } from "react-router-dom";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { fontGrid } from "@mui/material/styles/cssUtils";
 import ScrollableComponent from "../../component/ScrollableComponent/scrollableComponent";
+import { BeatLoader } from "react-spinners";
 
 function Answer() {
 	const [answer, setAnswer] = useState("");
@@ -17,16 +18,20 @@ function Answer() {
 	const token = localStorage.getItem("token");
 	const { questionid } = useParams();
 	const [answerGiven, setAnswerGiven] = useState(false);
+	const [loading, setLoading] = useState(false);
 	async function postedAnswer() {
+		setLoading(true);
 		try {
 			const { data } = await axios.get(`/answers/${questionid}`, {
 				headers: {
 					Authorization: "Bearer " + token,
 				},
 			});
+			setLoading(false);
 			setBringAnswer(data.answers);
 			console.log(data);
 		} catch (error) {
+			setLoading(false);
 			console.log(error.response);
 		}
 	}
@@ -68,7 +73,7 @@ function Answer() {
 			setTimeout(() => {
 				window.location.reload();
 				// navigate("/home");
-			}, 2000);
+			}, 0);
 		} catch (error) {
 			console.log(error.response);
 		}
@@ -76,12 +81,12 @@ function Answer() {
 	return (
 		<>
 			<Header />
-			<section className="answerPage">
-				<div className="border-bottom">
+			<section className={classes.answerPage}>
+				<div className={classes.border_bottom}>
 					<h1>Question</h1>
-					<div className="the-question">
+					<div className={classes.the_question}>
 						{bringQuestion.map((question, index) => (
-							<div key={index} className="one-question">
+							<div key={index} className={classes.one_question}>
 								<p
 									style={{
 										fontWeight: "bold",
@@ -104,13 +109,17 @@ function Answer() {
 						))}
 					</div>
 
-					<h1 className="top-bottom">Answers From The Community</h1>
-					<div className="answers-list">
+					<h1 className={classes.top_bottom}>Answers From The Community</h1>
+					<div className={classes.answers_list}>
 						<ScrollableComponent
-							style={{ height: "350px", backgroundcolor: "red" }}
+							style={{
+								height: "350px",
+								backgroundcolor: "red",
+								display: bringAnswer.length ? "block" : "none",
+							}}
 						>
 							{bringAnswer.map((answer, index) => (
-								<div key={index} className="answer">
+								<div key={index} className={classes.answer}>
 									<div>
 										<AccountCircleOutlinedIcon style={{ fontSize: "100" }} />
 										<p style={{ fontWeight: "bold", textAlign: "center" }}>
@@ -125,7 +134,7 @@ function Answer() {
 						</ScrollableComponent>
 					</div>
 				</div>
-				<div className="middle">
+				<div className={classes.middle}>
 					<h1>Answer The Top Question</h1>
 					<small
 						style={{
@@ -135,7 +144,9 @@ function Answer() {
 					>
 						Answer posted successfully
 					</small>
+					<Link to="/home" style={{textDecoration: "none", color: "red"}}>
 					<small>Go to Question page</small>
+					</Link>
 					<form action="" onSubmit={postAnswer}>
 						<textarea
 							value={answer}
@@ -144,7 +155,9 @@ function Answer() {
 							cols="125"
 							placeholder="Your Answer..."
 						></textarea>
-						<button type="submit">Post Your Answer</button>
+						<button type="submit">
+							{loading ? <BeatLoader color="#36d7b7" /> : "Post Your Answer"}
+						</button>
 					</form>
 				</div>
 			</section>

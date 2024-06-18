@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import axios from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
-import "./Register.css";
+import classes from "./Register.module.css";
 import handleToggle from "../../App";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
@@ -62,20 +62,20 @@ function Register({ handleToggle }) {
 		// console.log(passwordNameDom.current.value)
 	}
 	return (
-		<section className="large-box">
+		<section className={classes.large_box}>
 			<div>
 				<h3>Join the network</h3>
 			</div>
 			<div>
-				<p className="smalla">
+				<p className={classes.smalla}>
 					Already have an account? <Link onClick={handleToggle}>Sign in</Link>
 				</p>
 			</div>
 			<div>
-				<form onSubmit={handleSubmit} className="form-box">
+				<form onSubmit={handleSubmit} className={classes.form_box}>
 					<input ref={emailDom} type="text" placeholder="email" />
 
-					<div className="first-last">
+					<div className={classes.first_last}>
 						<input ref={firstNameDom} type="text" placeholder="first name" />
 						<input ref={lastNameDom} type="text" placeholder="last name" />
 					</div>
@@ -84,31 +84,31 @@ function Register({ handleToggle }) {
 
 					<input
 						ref={passwordDom}
-						className="eyeInput"
-						type = {passwordVisible ? "text" : "password"}
+						className={classes.eyeInput}
+						type={passwordVisible ? "text" : "password"}
 						// type="password"
 						placeholder="password"
 					/>
 					{passwordVisible ? (
 						<VisibilityRoundedIcon
 							onClick={visibliity}
-							className="signin-toggle"
+							className={classes.signin_toggle}
 						/>
 					) : (
 						<VisibilityOffRoundedIcon
 							onClick={visibliity}
-							className="signin-toggle"
+							className={classes.signin_toggle}
 						/>
 					)}
 
 					<button type="submit">Agree and Join</button>
 					<div>
-						<div className="smalla">
+						<div className={classes.smalla}>
 							I agree to the <Link to={"#"}>Privacy policy</Link> and{" "}
 							<Link to={"#"}>terms of service.</Link>
 						</div>
 
-						<div className="smalla">
+						<div className={classes.smalla}>
 							<a href={"/login"}>Already have an account?</a>
 						</div>
 					</div>

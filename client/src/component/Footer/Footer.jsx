@@ -1,6 +1,7 @@
 import React from "react";
 import whiteLogo from "./images/whiteLogo.png";
-import "./Footer.css";
+// import "./Footer.css";
+import classes from './Footer.module.css'
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -9,14 +10,14 @@ function Footer() {
 	return (
 		<>
 			<footer>
-				<div className="big-container">
+				<div className={classes.big_container}>
 					<div>
 						<div>
 							<a href="#">
 								<img src={whiteLogo} alt="" />
 							</a>
 						</div>
-						<div className="social-media">
+						<div className={classes.social_media}>
 							<div>
 								<a href="#">
 									<FacebookRoundedIcon fontSize="large" />
@@ -34,7 +35,7 @@ function Footer() {
 							</div>
 						</div>
 					</div>
-					<div className="firstList">
+					<div className={classes.firstList}>
 						<h2>Useful Link</h2>
 						<ul>
 							<li>
@@ -45,7 +46,7 @@ function Footer() {
 							</li>
 						</ul>
 					</div>
-					<div className="secondList">
+					<div className={classes.secondList}>
 						<h2>Contact Info</h2>
 						<ul>
 							<li>

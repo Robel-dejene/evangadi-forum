@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import axios from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../component/Header/Header";
-import "./Login.css";
+import classes from "./Login.module.css";
 import Footer from "../../component/Footer/Footer";
 import Register from "../Register/Register";
 import handleToggle from "../../App";
@@ -50,12 +50,12 @@ function Login() {
 	}
 
 	return (
-		<div className="full-page">
+		<div className={classes.full_page}>
 			<Header />
-			<div className="big-box">
-				<section className="two-boxes">
+			<div className={classes.big_box}>
+				<section className={classes.two_boxes}>
 					<div
-						className="first-box"
+						className={classes.first_box}
 						style={{ display: !toggle ? "none" : "block" }}
 					>
 						{/* {toggle ? ( */}
@@ -63,7 +63,7 @@ function Login() {
 							<div style={{ fontWeight: "bold" }}>Login to your account</div>
 							<div>
 								<span>Don't have an account? </span>
-								<span className="register-link">
+								<span className={classes.register_link}>
 									<Link onClick={handleToggle}>Create a new account</Link>
 								</span>
 							</div>
@@ -73,28 +73,27 @@ function Login() {
 							<div>
 								<input ref={emailDom} type="text" placeholder="email" />
 							</div>
-							<div className="eyeInpt-container">
+							<div className={classes.eyeInpt_container}>
 								<input
 									ref={passwordDom}
-									className="eyeInput"
+									className={classes.eyeInput}
 									type={passwordVisible ? "text" : "password"}
-
 									// type="password"
 									placeholder="password"
 								/>
 								{passwordVisible ? (
 									<VisibilityRoundedIcon
-										className="togglePassword"
+										className={classes.togglePassword}
 										onClick={visibliity}
 									/>
 								) : (
 									<VisibilityOffRoundedIcon
-										className="togglePassword"
+										className={classes.togglePassword}
 										onClick={visibliity}
 									/>
 								)}
 							</div>
-							<div className="register-link left">
+							<div className={`${classes.register_link} ${classes.left}`}>
 								<Link to="#">Forgot Password?</Link>
 							</div>
 							<div>
@@ -108,13 +107,13 @@ function Login() {
 					</div>
 					<div
 						style={{ display: toggle ? "none" : "block" }}
-						className="first-box"
+						className={classes.first_box}
 					>
 						<Register handleToggle={handleToggle} />
 					</div>
 					{/* )} */}
-					<div className="second-box">
-						<small>About</small>
+					<div className={classes.second_box}>
+						<small className={classes.small}>About</small>
 						<h1>Evangadi Networks Q&A</h1>
 						<div>
 							<div>

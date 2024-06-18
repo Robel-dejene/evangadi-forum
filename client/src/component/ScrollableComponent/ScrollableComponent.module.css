@@ -1,5 +1,5 @@
 /* styles.css */
-.scrollable-container {
+.scrollable_container {
 	width: 60vw;
 	height: 500px; /* Adjust height as needed */
 	overflow-y: auto; /* Enables vertical scrolling */

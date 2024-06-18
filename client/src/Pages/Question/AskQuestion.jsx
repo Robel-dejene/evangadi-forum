@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./AskQuestion.css";
-import { useNavigate } from "react-router-dom";
+import classes from "./AskQuestion.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../component/Header/Header";
 import Footer from "../../component/Footer/Footer";
 import axios from "../../axiosConfig";
@@ -43,9 +43,9 @@ function AskQuestion() {
 	return (
 		<>
 			<Header />
-			<div className="Full-page">
-				<div className="container">
-					<div className="instructions">
+			<div className={classes.Full_page}>
+				<div className={classes.container}>
+					<div className={classes.instructions}>
 						<h2>Steps to write a good question</h2>
 						<ul>
 							<li>Summerize your problem in a one-line title.</li>
@@ -56,10 +56,9 @@ function AskQuestion() {
 					</div>
 				</div>
 				<section>
-					<div className="q-area">
-						<div className="inside-q-area">
-							<h2>Ask a public question</h2>
-						</div>
+					<div className={classes.q_area}>
+						<h2>Ask a public question</h2>
+
 						<div>
 							<small
 								style={{
@@ -70,9 +69,11 @@ function AskQuestion() {
 								Question posted successfully. Redirecting to home page...
 							</small>
 						</div>
-						<div>
-							<small>Go to question page</small>
-						</div>
+
+						<Link to="/home" style={{textDecoration: "none", color: "black"}}>
+							<small className={classes.small}>Go to question page</small>
+						</Link>
+
 						<div>
 							<form action="" onSubmit={addQuestion}>
 								<div>
